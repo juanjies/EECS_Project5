@@ -50,7 +50,7 @@ SortedListClass< T >::SortedListClass(const SortedListClass< T > &rhs) {
       }
       // copy other nodes in the middle
       else {
-        tempTwoNext = new LinkedNodeClass(tempTwoPrev,
+        tempTwoNext = new LinkedNodeClass< T >(tempTwoPrev,
                                           tempOne -> getValue(), NULL);
         tempTwoPrev = tempTwoNext;
         tempTwoPrev -> setBeforeAndAfterPointers();
@@ -89,7 +89,7 @@ void SortedListClass< T >::insertValue(const T &valToInsert) {
   int tempVal = 0;
   // if the list is empty
   if (temp == NULL) {
-    insertedNode = new LinkedNodeClass(NULL, valToInsert, NULL);
+    insertedNode = new LinkedNodeClass< T >(NULL, valToInsert, NULL);
     head = insertedNode;
     tail = insertedNode;
     temp = head;
@@ -105,21 +105,21 @@ void SortedListClass< T >::insertValue(const T &valToInsert) {
     }
     // if valToInsert is greater than all on the list
     if (valToInsert >= tempVal && temp == tail) {
-      insertedNode = new LinkedNodeClass(temp, valToInsert, NULL);
+      insertedNode = new LinkedNodeClass< T >(temp, valToInsert, NULL);
       insertedNode -> setBeforeAndAfterPointers();
       tail = insertedNode;
       insertedNode = NULL;
     }
     // if valToInsert is less than all on the list
     else if (valToInsert < tempVal && temp == head) {
-      insertedNode = new LinkedNodeClass(NULL, valToInsert, temp);
+      insertedNode = new LinkedNodeClass< T >(NULL, valToInsert, temp);
       insertedNode -> setBeforeAndAfterPointers();
       head = insertedNode;
       insertedNode = NULL;
     }
     // any others in the middle of the list
     else {
-      insertedNode = new LinkedNodeClass(temp -> getPrev(),
+      insertedNode = new LinkedNodeClass< T >(temp -> getPrev(),
                                          valToInsert,
                                          temp);
       insertedNode -> setBeforeAndAfterPointers();
