@@ -2,8 +2,6 @@
 #include "SortedListClass.h"
 
 int main() {
-  LinkedNodeClass< int > intLNC;
-  SortedListClass< int > intSLC;
-  
+  cout << "compile successfully" << endl;
   return 0;
 }
