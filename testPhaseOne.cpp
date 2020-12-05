@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 #include "LinkedNodeClass.h"
 #include "SortedListClass.h"
 #include "FIFOQueueClass.h"
