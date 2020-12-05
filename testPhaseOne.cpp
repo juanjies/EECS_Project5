@@ -1,5 +1,6 @@
 #include "LinkedNodeClass.h"
 #include "SortedListClass.h"
+#include "FIFOQueueClass.h"
 #include "EventClass.h"
 
 int main() {
@@ -8,9 +9,7 @@ int main() {
 
   LinkedNodeClass< EventClass > intLNCOne(NULL, eventOne, NULL);
   LinkedNodeClass< EventClass > intLNCTwo(NULL, eventTwo,NULL);
-  if (intLNCOne < intLNCTwo)  {
-    cout << "eventOne happens before eventTwo" << endl;
-  }
+  cout << intLNCOne.getValue() << endl;
 
   SortedListClass< int > intSLC;
   intSLC.insertValue(5);
