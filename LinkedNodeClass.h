@@ -26,9 +26,11 @@ class LinkedNodeClass {
     // newly created node's previous pointer, value, and next pointer,
     // and assigns them.
     LinkedNodeClass(
-      LinkedNodeClass< T >* inPrev, //Address of node that comes before this one
+      LinkedNodeClass< T >* inPrev, 
+      //Address of node that comes before this one
       const T &inVal, // Value to be contained in this node
-      LinkedNodeClass< T >* inNext //Address of node that comes after this one
+      LinkedNodeClass< T >* inNext 
+      //Address of node that comes after this one
     );
     //Returns the value stored within this node.
     T getValue() const;

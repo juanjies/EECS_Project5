@@ -2,6 +2,7 @@
 #include "SortedListClass.h"
 
 int main() {
-  cout << "compile successfully" << endl;
+  LinkedNodeClass< int > intLNC(NULL, 978, NULL);
+  cout << intLNC.getValue() << endl;
   return 0;
 }
