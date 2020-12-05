@@ -4,14 +4,14 @@
 #include "EventClass.h"
 
 int main() {
-  EventClass eventOne(1, 1);
-  EventClass eventTwo(2, 2);
+  EventClass eventOne(1, EVENT_ARRIVE_EAST);
+  EventClass eventTwo(2, EVENT_ARRIVE_WEST);
 
   LinkedNodeClass< EventClass > intLNCOne(NULL, eventOne, NULL);
   LinkedNodeClass< EventClass > intLNCTwo(NULL, eventTwo,NULL);
   
   // cout << intLNCOne.getValue() << endl;
-  cout << eventOne << endl;
+  cout << eventOne;
 
   SortedListClass< int > intSLC;
   intSLC.insertValue(5);
