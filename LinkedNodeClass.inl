@@ -9,9 +9,9 @@ using namespace std;
 //          set as templated so the content can be any data type
 
 template < class T >
-LinkedNodeClass< T >::LinkedNodeClass(LinkedNodeClass* inPrev, 
+LinkedNodeClass< T >::LinkedNodeClass(LinkedNodeClass < T >* inPrev, 
                                   const T &inVal, 
-                                  LinkedNodeClass* inNext) {
+                                  LinkedNodeClass < T >* inNext) {
   prevNode = inPrev;
   nodeVal = inVal;
   nextNode = inNext;

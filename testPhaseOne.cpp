@@ -1,11 +1,13 @@
 #include "LinkedNodeClass.h"
 #include "SortedListClass.h"
+#include "EventClass.h"
 
 int main() {
-  LinkedNodeClass< int > intLNC(NULL, 978, NULL);
+  EventClass eventOne(1, 1);
+  EventClass eventTwo(2, 2);
+
+  LinkedNodeClass< EventClass > intLNC(NULL, eventOne, NULL);
   cout << intLNC.getValue() << endl;
-  LinkedNodeClass< float > decimalLNC(NULL, 3.14, NULL);
-  cout << decimalLNC.getValue() << endl;
 
   SortedListClass< int > intSLC;
   intSLC.insertValue(5);
