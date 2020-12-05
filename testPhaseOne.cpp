@@ -6,8 +6,11 @@ int main() {
   EventClass eventOne(1, 1);
   EventClass eventTwo(2, 2);
 
-  LinkedNodeClass< EventClass > intLNC(NULL, eventOne, NULL);
-  cout << intLNC.getValue() << endl;
+  LinkedNodeClass< EventClass > intLNCOne(NULL, eventOne, NULL);
+  LinkedNodeClass< EventClass > intLNCTwo(NULL, eventTwo,NULL);
+  if (intLNCOne < intLNCTwo)  {
+    cout << "eventOne happens before eventTwo" << endl;
+  }
 
   SortedListClass< int > intSLC;
   intSLC.insertValue(5);
