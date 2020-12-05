@@ -34,7 +34,7 @@ SortedListClass< T >::SortedListClass(const SortedListClass< T > &rhs) {
     for (int i = 0; i < rhs.getNumElems(); i++) {
       // copy the first node and link the head to it
       if (i == 0) {
-        tempTwoNext = new LinkedNodeClass(NULL, 
+        tempTwoNext = new LinkedNodeClass< T >(NULL, 
                                           tempOne -> getValue(), NULL);
         tempTwoPrev = tempTwoNext;
         head = tempTwoPrev;
@@ -42,7 +42,7 @@ SortedListClass< T >::SortedListClass(const SortedListClass< T > &rhs) {
       }
       // copy the last node
       else if (i == (rhs.getNumElems() - 1)) {
-        tempTwoNext = new LinkedNodeClass(tempTwoPrev,
+        tempTwoNext = new LinkedNodeClass< T >(tempTwoPrev,
                                           tempOne -> getValue(), NULL);
         tempTwoPrev = tempTwoNext;
         tempTwoPrev -> setBeforeAndAfterPointers();

@@ -57,7 +57,7 @@ class LinkedNodeClass {
       return (nodeVal >= rhs.getValue());
     }
     bool operator<(const LinkedNodeClass< T > &rhs)  {
-      return (nodeVal < )
+      return (nodeVal < rhs.getValue());
     }
 };
 

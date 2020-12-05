@@ -23,12 +23,12 @@ T LinkedNodeClass< T >::getValue() const {
 }
 
 template < class T >
-LinkedNodeClass* LinkedNodeClass< T >::getNext() const {
+LinkedNodeClass< T >* LinkedNodeClass< T >::getNext() const {
   return (nextNode);
 }
 
 template < class T >
-LinkedNodeClass* LinkedNodeClass< T >::getPrev() const {
+LinkedNodeClass< T >* LinkedNodeClass< T >::getPrev() const {
   return (prevNode);
 }
 
