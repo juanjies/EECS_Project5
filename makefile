@@ -2,7 +2,8 @@ all: testPhaseOne.exe
 
 testPhaseOne.o: testPhaseOne.cpp LinkedNodeClass.inl LinkedNodeClass.h \
                 SortedListClass.inl SortedListClass.h \
-                FIFOQueueClass.inl FIFOQueueClass.h
+                FIFOQueueClass.inl FIFOQueueClass.h \
+                EventClass.h
 	g++ -c testPhaseOne.cpp -o testPhaseOne.o
 
 EventClass.o: EventClass.cpp EventClass.h
