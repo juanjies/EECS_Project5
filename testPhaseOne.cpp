@@ -9,7 +9,9 @@ int main() {
 
   LinkedNodeClass< EventClass > intLNCOne(NULL, eventOne, NULL);
   LinkedNodeClass< EventClass > intLNCTwo(NULL, eventTwo,NULL);
-  cout << intLNCOne.getValue() << endl;
+  
+  // cout << intLNCOne.getValue() << endl;
+  cout << eventOne << endl;
 
   SortedListClass< int > intSLC;
   intSLC.insertValue(5);
