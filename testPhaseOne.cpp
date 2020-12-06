@@ -10,11 +10,6 @@ int main() {
   EventClass eventOne(1, EVENT_ARRIVE_EAST);
   EventClass eventTwo(2, EVENT_ARRIVE_WEST);
   EventClass eventThree(3, EVENT_ARRIVE_NORTH);  
-  
-  cout << "LinkedNodeClass testing" << endl;
-  cout << endl;
-  cout << LNCOne.getValue() << endl;
-  cout << LNCTwo.getValue() << endl;
 
   SortedListClass < EventClass > SLCOne;
   SLCOne.insertValue(eventTwo);
