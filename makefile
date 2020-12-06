@@ -19,7 +19,7 @@ random.o: random.cpp random.h
 project5.o: project5.cpp IntersectionSimulationClass.h
 	g++ -c project5.cpp -o project5.o
 
-proj5.exe: project5.o EventClass.o IntersectionSimulationClass.o \
+proj5.exe: CarClass.o EventClass.o IntersectionSimulationClass.o \
     random.o project5.o
 	g++ CarClass.o EventClass.o IntersectionSimulationClass.o \
       random.o project5.o -o proj5.exe
