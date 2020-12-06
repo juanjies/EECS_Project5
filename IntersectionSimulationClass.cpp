@@ -194,29 +194,34 @@ void IntersectionSimulationClass::scheduleArrival(
      )
 {
   int inEventTime = 0;
+  int inEventType = EVENT_UNKNOWN;
 
-  if (travelDir == EVENT_ARRIVE_EAST)
+  if (travelDir == EAST_DIRECTION)
   {
     inEventTime = currentTime 
                   + getPositiveNormal(eastArrivalMean, eastArrivalStdDev);
+    inEventType = EVENT_ARRIVE_EAST;
   }
-  else if (travelDir == EVENT_ARRIVE_WEST)
+  else if (travelDir == WEST_DIRECTION)
   {
     inEventTime = currentTime 
                   + getPositiveNormal(westArrivalMean, westArrivalStdDev);
+    inEventType = EVENT_ARRIVE_WEST;
   }
-  else if (travelDir == EVENT_ARRIVE_NORTH)
+  else if (travelDir == NORTH_DIRECTION)
   {
     inEventTime = currentTime 
                   + getPositiveNormal(northArrivalMean, northArrivalStdDev);
+    inEventType = EVENT_ARRIVE_NORTH;
   }
-  else if (travelDir == EVENT_ARRIVE_SOUTH)
+  else if (travelDir == SOUTH_DIRECTION)
   {
     inEventTime = currentTime 
                   + getPositiveNormal(southArrivalMean, southArrivalStdDev);
+    inEventType = EVENT_ARRIVE_SOUTH;
   }
   
-  EventClass inEvent(inEventTime, travelDir);
+  EventClass inEvent(inEventTime, inEventType);
   eventList.insertValue(inEvent);
 }
 
