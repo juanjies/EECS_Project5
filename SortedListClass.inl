@@ -153,7 +153,7 @@ void SortedListClass< T >::printBackward() const {
 }
 
 template < class T >
-bool SortedListClass< T >::removeFront(int &theVal) {
+bool SortedListClass< T >::removeFront(T &theVal) {
   LinkedNodeClass< T >* temp = head;
 
   if (temp == NULL) {
@@ -175,7 +175,7 @@ bool SortedListClass< T >::removeFront(int &theVal) {
 }
 
 template < class T >
-bool SortedListClass< T >::removeLast(int &theVal) {
+bool SortedListClass< T >::removeLast(T &theVal) {
   LinkedNodeClass< T >* temp = tail;
 
   if (temp == NULL) {

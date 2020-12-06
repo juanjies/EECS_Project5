@@ -60,7 +60,7 @@ class SortedListClass {
     //If the list was not empty and the first item was successfully
     //removed, true is returned, and the reference parameter will
     //be set to the item that was removed.
-    bool removeFront(int &theVal);
+    bool removeFront(T &theVal);
     //Removes the last item from the list and returns the value that
     //was contained in it via the reference parameter. If the list
     //was empty, the function returns false to indicate failure, and
@@ -68,7 +68,7 @@ class SortedListClass {
     //If the list was not empty and the last item was successfully
     //removed, true is returned, and the reference parameter will
     //be set to the item that was removed.
-    bool removeLast(int &theVal);
+    bool removeLast(T &theVal);
     //Returns the number of nodes contained in the list.
     int getNumElems() const;
     //Provides the value stored in the node at index provided in the
