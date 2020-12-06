@@ -291,7 +291,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(EAST_DIRECTION, currentTime);
     eastQueue.enqueue(inCar);
 
-    cout << " Car #" << inCar.getId 
+    cout << " Car #" << inCar.getId()
          << "arrives east-bound - queue length: " 
          << eastQueue.getNumElems();
     return (true);
@@ -321,7 +321,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(SOUTH_DIRECTION, currentTime);
     southQueue.enqueue(inCar);
     
-    cout << " Car #" << inCar.getId 
+    cout << " Car #" << inCar.getId()
          << "arrives south-bound - queue length: " 
          << southQueue.getNumElems();
     return (true);
