@@ -193,19 +193,43 @@ void IntersectionSimulationClass::scheduleArrival(
      const string &travelDir
      )
 {
-  ;
+  int inEventTime = 0;
+
+  if (travelDir == EVENT_ARRIVE_EAST)
+  {
+    inEventTime = currentTime 
+                  + getPositiveNormal(eastArrivalMean, eastArrivalStdDev);
+  }
+  else if (travelDir == EVENT_ARRIVE_WEST)
+  {
+    inEventTime = currentTime 
+                  + getPositiveNormal(westArrivalMean, westArrivalStdDev);
+  }
+  else if (travelDir == EVENT_ARRIVE_NORTH)
+  {
+    inEventTime = currentTime 
+                  + getPositiveNormal(northArrivalMean, northArrivalStdDev);
+  }
+  else if (travelDir == EVENT_ARRIVE_SOUTH)
+  {
+    inEventTime = currentTime 
+                  + getPositiveNormal(southArrivalMean, southArrivalStdDev);
+  }
+  
+  EventClass inEvent(inEventTime, travelDir);
+  eventList.insertValue(inEvent);
 }
 
 void IntersectionSimulationClass::scheduleLightChange(
      )
 {
-  cout << "THIS FUNCTION NEEDS TO BE IMPLEMENTED" << endl;
+  ;
 }
 
 bool IntersectionSimulationClass::handleNextEvent(
      )
 {
-  cout << "THIS FUNCTION NEEDS TO BE IMPLEMENTED" << endl;
+  return (false);
 }
 
 void IntersectionSimulationClass::printStatistics(
