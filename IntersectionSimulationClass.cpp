@@ -223,6 +223,7 @@ void IntersectionSimulationClass::scheduleArrival(
   
   EventClass inEvent(inEventTime, inEventType);
   eventList.insertValue(inEvent);
+  eventList.printForward();
 }
 
 void IntersectionSimulationClass::scheduleLightChange(
