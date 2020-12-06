@@ -222,8 +222,9 @@ void IntersectionSimulationClass::scheduleArrival(
   }
   
   EventClass inEvent(inEventTime, inEventType);
+  cout << "Time: " << currentTime << " Schedule Event Type: "
+       << inEvent << endl;
   eventList.insertValue(inEvent);
-  eventList.printForward();
 }
 
 void IntersectionSimulationClass::scheduleLightChange(
