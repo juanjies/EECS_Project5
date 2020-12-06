@@ -89,7 +89,7 @@ void SortedListClass< T >::insertValue(const T &valToInsert) {
   T tempVal;
   // if the list is empty
   if (temp == NULL) {
-    insertedNode = new LinkedNodeClass< T >(NULL, valToInsert, NULL);
+    insertedNode = new LinkedNodeClass< T > (NULL, valToInsert, NULL);
     head = insertedNode;
     tail = insertedNode;
     temp = head;

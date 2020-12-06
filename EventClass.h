@@ -62,11 +62,11 @@ class EventClass
     //SortedListClass needs in order to sort event class objects
     //here!  An event "A" is "less than" an event "B" if
     //"A"'s time is less than "B"'s time.
-    bool operator>=(const EventClass &rhs) 
+    bool operator>=(const EventClass &rhs) const
     {
       return (timeOccurs >= rhs.getTimeOccurs());
     }
-    bool operator<(const EventClass &rhs)
+    bool operator<(const EventClass &rhs) const
     {
       return (timeOccurs < rhs.getTimeOccurs() );
     }
