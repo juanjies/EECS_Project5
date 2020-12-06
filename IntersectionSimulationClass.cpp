@@ -273,7 +273,9 @@ bool IntersectionSimulationClass::handleNextEvent(
      )
 {
   EventClass currentEvent;
-  currentEvent = eventList.removeFront();
+  bool isEventWaiting = true;
+
+  isEventWaiting = eventList.removeFront(currentEvent);
   currentTime = currentEvent.getTimeOccurs();
 
   cout << "Handling Event Type: " << currentEvent << endl;
@@ -299,7 +301,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(WEST_DIRECTION, currentTime);
     westQueue.enqueue(inCar);
     
-    cout << " Car #" << inCar.getId 
+    cout << " Car #" << inCar.getId()
          << "arrives west-bound - queue length: " 
          << westQueue.getNumElems();
     return (true);
@@ -309,7 +311,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(NORTH_DIRECTION, currentTime);
     northQueue.enqueue(inCar);
     
-    cout << " Car #" << inCar.getId 
+    cout << " Car #" << inCar.getId()
          << "arrives north-bound - queue length: " 
          << northQueue.getNumElems();
     return (true);
