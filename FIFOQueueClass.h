@@ -44,5 +44,5 @@ class FIFOQueueClass {
     void clear();
 };
 
-#include "FIFOQueueClass.h"
+#include "FIFOQueueClass.inl"
 #endif
