@@ -13,11 +13,16 @@ int main() {
   LinkedNodeClass < EventClass > LNCOne(NULL, eventOne, NULL);
   LinkedNodeClass < EventClass > LNCTwo(NULL, eventTwo,NULL);
   
-  // cout << intLNCOne.getValue() << endl;
+  cout << "LinkedNodeClass testing" << endl;
   cout << LNCOne.getValue() << endl;
   cout << LNCTwo.getValue() << endl;
 
-  // SortedListClass< EventClass > SLCOne;
-  // SLCOne.insertValue(5);
+  SortedListClass < EventClass > SLCOne;
+  SLCOne.insertValue(eventOne);
+  SLCOne.insertValue(eventTwo);
+
+  cout << "SortedListClass testing" << endl;
+  SLCOne.printForward();
+
   return 0;
 }
