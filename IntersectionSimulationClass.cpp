@@ -193,44 +193,80 @@ void IntersectionSimulationClass::scheduleArrival(
      const string &travelDir
      )
 {
-  int inEventTime = 0;
-  int inEventType = EVENT_UNKNOWN;
+  int inArrTime = 0;
+  int inArrType = EVENT_UNKNOWN;
 
   if (travelDir == EAST_DIRECTION)
   {
-    inEventTime = currentTime 
+    inArrTime = currentTime 
                   + getPositiveNormal(eastArrivalMean, eastArrivalStdDev);
-    inEventType = EVENT_ARRIVE_EAST;
+    inArrType = EVENT_ARRIVE_EAST;
   }
   else if (travelDir == WEST_DIRECTION)
   {
-    inEventTime = currentTime 
+    inArrTime = currentTime 
                   + getPositiveNormal(westArrivalMean, westArrivalStdDev);
-    inEventType = EVENT_ARRIVE_WEST;
+    inArrType = EVENT_ARRIVE_WEST;
   }
   else if (travelDir == NORTH_DIRECTION)
   {
-    inEventTime = currentTime 
+    inArrTime = currentTime 
                   + getPositiveNormal(northArrivalMean, northArrivalStdDev);
-    inEventType = EVENT_ARRIVE_NORTH;
+    inArrType = EVENT_ARRIVE_NORTH;
   }
   else if (travelDir == SOUTH_DIRECTION)
   {
-    inEventTime = currentTime 
+    inArrTime = currentTime 
                   + getPositiveNormal(southArrivalMean, southArrivalStdDev);
-    inEventType = EVENT_ARRIVE_SOUTH;
+    inArrType = EVENT_ARRIVE_SOUTH;
   }
   
-  EventClass inEvent(inEventTime, inEventType);
+  EventClass inArrival(inArrTime, inArrType);
   cout << "Time: " << currentTime << " Schedule Event Type: "
-       << inEvent << endl;
-  eventList.insertValue(inEvent);
+       << inArrival << endl;
+  eventList.insertValue(inArrival);
 }
 
 void IntersectionSimulationClass::scheduleLightChange(
      )
 {
-  ;
+  int inLightChangeTime = 0;
+  int inLightChangeType = EVENT_UNKNOWN;
+  int lightCycleTime = eastWestGreenTime + eastWestYellowTime
+                       + northSouthGreenTime + northSouthYellowTime;
+  if (currentTime % lightCycleTime < eastWestGreenTime)
+  {
+    // Integer division 
+    inLightChangeTime = currentTime / lightCycleTime + eastWestGreenTime;
+    inLightChangeType = EVENT_CHANGE_YELLOW_EW;
+  }
+  else if (currentTime % lightCycleTime 
+           < (eastWestGreenTime + eastWestYellowTime))
+  {
+    inLightChangeTime = currentTime / lightCycleTime 
+                  + (eastWestGreenTime + eastWestYellowTime);
+    inLightChangeType = EVENT_CHANGE_GREEN_NS;
+  }
+  else if (currentTime % lightCycleTime 
+           < (eastWestGreenTime + eastWestYellowTime + northSouthGreenTime))
+  {
+    inLightChangeTime = currentTime / lightCycleTime 
+                  + (eastWestGreenTime + eastWestYellowTime 
+                  + northSouthGreenTime);
+    inLightChangeType = EVENT_CHANGE_YELLOW_NS;
+  }
+  else 
+  {
+    inLightChangeTime = currentTime / lightCycleTime 
+                  + (eastWestGreenTime + eastWestYellowTime 
+                  + northSouthGreenTime + northSouthYellowTime);
+    inLightChangeType = EVENT_CHANGE_GREEN_EW;
+  }
+
+  EventClass inLightChange(inLightChangeTime, inLightChangeType);
+  cout << "Time: " << currentTime << " Schedule Event Type: "
+       << inLightChange << endl;
+  eventList.insertValue(inLightChange);
 }
 
 bool IntersectionSimulationClass::handleNextEvent(
