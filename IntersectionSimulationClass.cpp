@@ -438,7 +438,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingNorthBound = true;
     bool isYellowLightTrafficStopNorthBound = false;
     bool isCarWaitingSouthBound = true;   
-    bool isYellowLightTrafficStopNorthBound = false;
+    bool isYellowLightTrafficStopSouthBound = false;
 
     for (int i = 0; i < northSouthYellowTime; i++)
     {
@@ -458,7 +458,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
         {
           cout << "Next north-bound car will NOT advance on yellow" << endl;
-          isYellowLightTrafficStopEastBound = true;
+          isYellowLightTrafficStopNorthBound = true;
         }
       }
       // south bound
