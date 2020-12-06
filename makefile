@@ -1,16 +1,29 @@
-all: testPhaseOne.exe
+all: proj5.exe
 
-testPhaseOne.o: testPhaseOne.cpp LinkedNodeClass.inl LinkedNodeClass.h \
-                SortedListClass.inl SortedListClass.h \
-                FIFOQueueClass.inl FIFOQueueClass.h \
-                EventClass.h
-	g++ -c testPhaseOne.cpp -o testPhaseOne.o
+CarClass.o: CarClass.cpp CarClass.h
+	g++ -c CarClass.cpp -o CarClass.o
 
 EventClass.o: EventClass.cpp EventClass.h
 	g++ -c EventClass.cpp -o EventClass.o
 
-testPhaseOne.exe: testPhaseOne.o EventClass.o
-	g++ testPhaseOne.o EventClass.o -o testPhaseOne.exe
+IntersectionSimulationClass.o: IntersectionSimulationClass.cpp \
+    IntersectionSimulationClass.h \
+    SortedListClass.inl SortedListClass.h \
+    FIFOQueueClass.inl FIFOQueueClass.h \
+    EventClass.h CarClass.h
+  g++ -c IntersectionSimulationClass.cpp -o IntersectionSimulationClass.o  
+
+random.o: random.cpp random.h
+	g++ -c random.cpp -o random.o 
+
+project5.o: project5.cpp IntersectionSimulationClass.h
+	g++ -c project5.cpp -o project5.o
+
+proj5.exe: project5.o EventClass.o
+	g++ CarClass.o EventClass.o IntersectionSimulationClass.o \
+      random.o project5.o -o proj5.exe
 
 clean:
-	rm -rf testPhaseOne.o EventClass.o testPhaseOne.exe
+	rm -rf project5.o CarClass.o EventClass.o \
+         IntersectionSimulationClass.o random.o \
+         proj5.exe
