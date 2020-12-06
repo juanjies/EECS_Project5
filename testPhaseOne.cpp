@@ -9,6 +9,7 @@ using namespace std;
 int main() {
   EventClass eventOne(1, EVENT_ARRIVE_EAST);
   EventClass eventTwo(2, EVENT_ARRIVE_WEST);
+  EventClass eventThree(3, EVENT_ARRIVE_NORTH);  
 
   LinkedNodeClass < EventClass > LNCOne(NULL, eventOne, NULL);
   LinkedNodeClass < EventClass > LNCTwo(NULL, eventTwo,NULL);
@@ -18,8 +19,9 @@ int main() {
   cout << LNCTwo.getValue() << endl;
 
   SortedListClass < EventClass > SLCOne;
-  SLCOne.insertValue(eventOne);
   SLCOne.insertValue(eventTwo);
+  SLCOne.insertValue(eventOne);
+  SLCOne.insertValue(eventThree);  
 
   cout << "SortedListClass testing" << endl;
   SLCOne.printForward();
