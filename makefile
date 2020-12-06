@@ -11,7 +11,7 @@ IntersectionSimulationClass.o: IntersectionSimulationClass.cpp \
     SortedListClass.inl SortedListClass.h \
     FIFOQueueClass.inl FIFOQueueClass.h \
     EventClass.h CarClass.h
-  g++ -c IntersectionSimulationClass.cpp -o IntersectionSimulationClass.o  
+	g++ -c IntersectionSimulationClass.cpp -o IntersectionSimulationClass.o  
 
 random.o: random.cpp random.h
 	g++ -c random.cpp -o random.o 
