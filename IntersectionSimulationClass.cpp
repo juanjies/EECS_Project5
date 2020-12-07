@@ -375,9 +375,9 @@ bool IntersectionSimulationClass::handleNextEvent(
     numTotalAdvancedWest += numAdvCarWestGreen;
 
     cout << "East-bound cars advanced on green: " << numAdvCarEastGreen
-         << " Remaining queue: " << eastQueue.getNumElems();
+         << " Remaining queue: " << eastQueue.getNumElems() << endl;
     cout << "West-bound cars advanced on green; " << numAdvCarWestGreen
-         << " Remaining queue: " << westQueue.getNumElems();
+         << " Remaining queue: " << westQueue.getNumElems() << endl;
 
     scheduleLightChange();
     return (true);
