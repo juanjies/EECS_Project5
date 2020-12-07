@@ -293,7 +293,7 @@ bool IntersectionSimulationClass::handleNextEvent(
 
     cout << " Car #" << inCar.getId()
          << "arrives east-bound - queue length: " 
-         << eastQueue.getNumElems();
+         << eastQueue.getNumElems() << endl;
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_WEST)
@@ -303,7 +303,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     
     cout << " Car #" << inCar.getId()
          << "arrives west-bound - queue length: " 
-         << westQueue.getNumElems();
+         << westQueue.getNumElems() << endl;
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_NORTH)
@@ -313,7 +313,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     
     cout << " Car #" << inCar.getId()
          << "arrives north-bound - queue length: " 
-         << northQueue.getNumElems();
+         << northQueue.getNumElems() << endl;
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_SOUTH)
@@ -323,7 +323,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     
     cout << " Car #" << inCar.getId()
          << "arrives south-bound - queue length: " 
-         << southQueue.getNumElems();
+         << southQueue.getNumElems() << endl;
     return (true);
   }
 

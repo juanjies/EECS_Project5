@@ -56,6 +56,7 @@ int main(
     //after the end time of the simulation (an input parameter).
     cout << endl;
     cout << "Starting simulation!" << endl;
+    cout << endl;
 
     bool doKeepRunning = true;
     while (doKeepRunning)
