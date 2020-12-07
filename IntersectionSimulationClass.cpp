@@ -280,8 +280,7 @@ bool IntersectionSimulationClass::handleNextEvent(
   currentTime = currentEvent.getTimeOccurs();
 
   cout << "Handling " << currentEvent << endl;
-  cout << "Time: " << currentTime;
-  
+    
   // next event is larger than the simulation time
   if (currentTime > timeToStopSim)
   {
@@ -292,6 +291,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(EAST_DIRECTION, currentTime);
     eastQueue.enqueue(inCar);
 
+    cout << "Time: " << currentTime;
     cout << " Car #" << inCar.getId()
          << " arrives east-bound - queue length: " 
          << eastQueue.getNumElems() << endl;
@@ -304,6 +304,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(WEST_DIRECTION, currentTime);
     westQueue.enqueue(inCar);
     
+    cout << "Time: " << currentTime;
     cout << " Car #" << inCar.getId()
          << " arrives west-bound - queue length: " 
          << westQueue.getNumElems() << endl;
@@ -316,6 +317,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(NORTH_DIRECTION, currentTime);
     northQueue.enqueue(inCar);
     
+    cout << "Time: " << currentTime;
     cout << " Car #" << inCar.getId()
          << " arrives north-bound - queue length: " 
          << northQueue.getNumElems() << endl;
@@ -328,6 +330,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass inCar(SOUTH_DIRECTION, currentTime);
     southQueue.enqueue(inCar);
     
+    cout << "Time: " << currentTime;
     cout << " Car #" << inCar.getId()
          << " arrives south-bound - queue length: " 
          << southQueue.getNumElems() << endl;
@@ -342,12 +345,14 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingEastBound = true;
     bool isCarWaitingWestBound = true; 
  
+    cout << "Advancing cars on east-west green" << endl;
+
     for (int i = 0; i < eastWestGreenTime; i++)
     {
       if (isCarWaitingEastBound)
       {
         isCarWaitingEastBound = eastQueue.dequeue(outCar); 
-        cout << "Car #" << outCar.getId() 
+        cout << "  Car #" << outCar.getId() 
            << " advances east-bound" << endl; 
       }
     }
@@ -356,7 +361,7 @@ bool IntersectionSimulationClass::handleNextEvent(
       if (isCarWaitingWestBound)
       {
         isCarWaitingWestBound = westQueue.dequeue(outCar);
-        cout << "Car #" << outCar.getId()
+        cout << "  Car #" << outCar.getId()
            << " advances west-bound" << endl;
       }
     }
