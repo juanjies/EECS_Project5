@@ -300,6 +300,11 @@ bool IntersectionSimulationClass::handleNextEvent(
          << eastQueue.getNumElems() << endl;
     scheduleArrival(EAST_DIRECTION);
     cout << endl;
+
+    if (eastQueue.getNumElems() > maxEastQueueLength)
+    {
+      maxEastQueueLength = eastQueue.getNumElems();
+    }
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_WEST)
@@ -313,6 +318,11 @@ bool IntersectionSimulationClass::handleNextEvent(
          << westQueue.getNumElems() << endl;
     scheduleArrival(WEST_DIRECTION);
     cout << endl;
+
+    if (westQueue.getNumElems() > maxWestQueueLength)
+    {
+      maxWestQueueLength = westQueue.getNumElems();
+    }
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_NORTH)
@@ -326,6 +336,11 @@ bool IntersectionSimulationClass::handleNextEvent(
          << northQueue.getNumElems() << endl;
     scheduleArrival(NORTH_DIRECTION);
     cout << endl;
+
+    if (northQueue.getNumElems() > maxNorthQueueLength)
+    {
+      maxNorthQueueLength = northQueue.getNumElems();
+    }
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_SOUTH)
@@ -339,6 +354,11 @@ bool IntersectionSimulationClass::handleNextEvent(
          << southQueue.getNumElems() << endl;
     scheduleArrival(SOUTH_DIRECTION);
     cout << endl;
+
+    if (southQueue.getNumElems() > maxSouthQueueLength)
+    {
+      maxSouthQueueLength = southQueue.getNumElems();
+    }
     return (true);
   }
   // start cases for light change event
@@ -352,15 +372,6 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingEastBound = true;
     bool isCarWaitingWestBound = true; 
  
-    if (eastQueue.getNumElems() > maxEastQueueLength)
-    {
-      maxEastQueueLength = eastQueue.getNumElems();
-    }
-    if (westQueue.getNumElems() > maxWestQueueLength)
-    {
-      maxWestQueueLength = westQueue.getNumElems();
-    }
-
     cout << "Advancing cars on east-west green" << endl;
 
     for (int i = 0; i < eastWestGreenTime; i++)
@@ -407,15 +418,6 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingWestBound = true;   
     bool isYellowLightTrafficEndWestBound = false;
     
-    if (eastQueue.getNumElems() > maxEastQueueLength)
-    {
-      maxEastQueueLength = eastQueue.getNumElems();
-    }
-    if (westQueue.getNumElems() > maxWestQueueLength)
-    {
-      maxWestQueueLength = westQueue.getNumElems();
-    }
-
     cout << "Advancing cars on east-west yellow" << endl;
 
     for (int i = 0; i < eastWestYellowTime; i++)
@@ -490,15 +492,6 @@ bool IntersectionSimulationClass::handleNextEvent(
     CarClass outCarSouth;
     int numAdvCarSouthGreen = 0;
 
-    if (northQueue.getNumElems() > maxNorthQueueLength)
-    {
-      maxNorthQueueLength = northQueue.getNumElems();
-    }
-    if (southQueue.getNumElems() > maxSouthQueueLength)
-    {
-      maxSouthQueueLength = southQueue.getNumElems();
-    }
-
     bool isCarWaitingNorthBound = true;
     bool isCarWaitingSouthBound = true; 
  
@@ -547,15 +540,6 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingSouthBound = true;   
     bool isYellowLightTrafficEndSouthBound = false;
     
-    if (northQueue.getNumElems() > maxNorthQueueLength)
-    {
-      maxNorthQueueLength = northQueue.getNumElems();
-    }
-    if (southQueue.getNumElems() > maxSouthQueueLength)
-    {
-      maxSouthQueueLength = southQueue.getNumElems();
-    }
-
     cout << "Advancing cars on north-south yellow" << endl;
 
     for (int i = 0; i < northSouthYellowTime; i++)
