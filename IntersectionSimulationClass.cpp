@@ -5,6 +5,7 @@ using namespace std;
 
 #include "IntersectionSimulationClass.h"
 #include "random.h"
+#include "constants.h"
 
 void IntersectionSimulationClass::readParametersFromFile(
      const string &paramFname
@@ -292,8 +293,10 @@ bool IntersectionSimulationClass::handleNextEvent(
     eastQueue.enqueue(inCar);
 
     cout << " Car #" << inCar.getId()
-         << "arrives east-bound - queue length: " 
+         << " arrives east-bound - queue length: " 
          << eastQueue.getNumElems() << endl;
+    scheduleArrival(EAST_DIRECTION);
+    cout << endl;
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_WEST)
@@ -302,8 +305,10 @@ bool IntersectionSimulationClass::handleNextEvent(
     westQueue.enqueue(inCar);
     
     cout << " Car #" << inCar.getId()
-         << "arrives west-bound - queue length: " 
+         << " arrives west-bound - queue length: " 
          << westQueue.getNumElems() << endl;
+    scheduleArrival(WEST_DIRECTION);
+    cout << endl;
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_NORTH)
@@ -312,8 +317,10 @@ bool IntersectionSimulationClass::handleNextEvent(
     northQueue.enqueue(inCar);
     
     cout << " Car #" << inCar.getId()
-         << "arrives north-bound - queue length: " 
+         << " arrives north-bound - queue length: " 
          << northQueue.getNumElems() << endl;
+    scheduleArrival(NORTH_DIRECTION);
+    cout << endl;
     return (true);
   }
   else if (currentEvent.getType() == EVENT_ARRIVE_SOUTH)
@@ -322,8 +329,10 @@ bool IntersectionSimulationClass::handleNextEvent(
     southQueue.enqueue(inCar);
     
     cout << " Car #" << inCar.getId()
-         << "arrives south-bound - queue length: " 
+         << " arrives south-bound - queue length: " 
          << southQueue.getNumElems() << endl;
+    scheduleArrival(SOUTH_DIRECTION);
+    cout << endl;
     return (true);
   }
 
