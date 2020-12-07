@@ -341,7 +341,11 @@ bool IntersectionSimulationClass::handleNextEvent(
 
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_EW)
   {
-    CarClass outCar;
+    CarClass outCarEast;
+    int numAdvCarEastGreen = 0;
+    CarClass outCarWest;
+    int numAdvCarWestGreen = 0;
+
     bool isCarWaitingEastBound = true;
     bool isCarWaitingWestBound = true; 
  
@@ -351,20 +355,31 @@ bool IntersectionSimulationClass::handleNextEvent(
     {
       if (isCarWaitingEastBound)
       {
-        isCarWaitingEastBound = eastQueue.dequeue(outCar); 
-        cout << "  Car #" << outCar.getId() 
+        isCarWaitingEastBound = eastQueue.dequeue(outCarEast); 
+        cout << "  Car #" << outCarEast.getId() 
            << " advances east-bound" << endl; 
+        numAdvCarEastGreen++;
       }
     }
     for (int i = 0; i < eastWestGreenTime; i++)
     {
       if (isCarWaitingWestBound)
       {
-        isCarWaitingWestBound = westQueue.dequeue(outCar);
-        cout << "  Car #" << outCar.getId()
+        isCarWaitingWestBound = westQueue.dequeue(outCarWest);
+        cout << "  Car #" << outCarWest.getId()
            << " advances west-bound" << endl;
+        numAdvCarWestGreen++;
       }
     }
+    numTotalAdvancedEast += numAdvCarEastGreen;
+    numTotalAdvancedWest += numAdvCarWestGreen;
+
+    cout << "East-bound cars advanced on green: " << numAdvCarEastGreen
+         << " Remaining queue: " << eastQueue.getNumElems();
+    cout << "West-bound cars advanced on green; " << numAdvCarWestGreen
+         << " Remaining queue: " << westQueue.getNumElems();
+
+    scheduleLightChange();
     return (true);
   }
 
