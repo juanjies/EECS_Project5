@@ -445,7 +445,8 @@ bool IntersectionSimulationClass::handleNextEvent(
           }
           else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
           {
-            cout << "  Next east-bound car will NOT advance on yellow" << endl;
+            cout << "  Next east-bound car will NOT advance on yellow" 
+                 << endl;
             isYellowLightTrafficEndEastBound = true;
           }
         }
@@ -473,7 +474,8 @@ bool IntersectionSimulationClass::handleNextEvent(
           }
           else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
           {
-            cout << "  Next west-bound car will NOT advance on yellow" << endl;
+            cout << "  Next west-bound car will NOT advance on yellow" 
+                 << endl;
             isYellowLightTrafficEndWestBound = true;
           }
         }
@@ -596,7 +598,8 @@ bool IntersectionSimulationClass::handleNextEvent(
           }
           else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
           {
-            cout << "  Next south-bound car will NOT advance on yellow" << endl;
+            cout << "  Next south-bound car will NOT advance on yellow" 
+                 << endl;
             isYellowLightTrafficEndSouthBound = true;
           }
         }
