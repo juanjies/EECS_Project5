@@ -1,22 +1,22 @@
 all: proj5.exe
 
-CarClass.o: CarClass.cpp CarClass.h
+CarClass.o: CarClass.cpp CarClass.h constants.h
 	g++ -c CarClass.cpp -o CarClass.o
 
-EventClass.o: EventClass.cpp EventClass.h
+EventClass.o: EventClass.cpp EventClass.h constants.h
 	g++ -c EventClass.cpp -o EventClass.o
 
 IntersectionSimulationClass.o: IntersectionSimulationClass.cpp \
     IntersectionSimulationClass.h \
     SortedListClass.inl SortedListClass.h \
     FIFOQueueClass.inl FIFOQueueClass.h \
-    EventClass.h CarClass.h
+    EventClass.h CarClass.h constants.h
 	g++ -c IntersectionSimulationClass.cpp -o IntersectionSimulationClass.o  
 
 random.o: random.cpp random.h
 	g++ -c random.cpp -o random.o 
 
-project5.o: project5.cpp IntersectionSimulationClass.h
+project5.o: project5.cpp IntersectionSimulationClass.h constants.h
 	g++ -c project5.cpp -o project5.o
 
 proj5.exe: CarClass.o EventClass.o IntersectionSimulationClass.o \

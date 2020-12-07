@@ -419,8 +419,8 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isYellowLightTrafficEndWestBound = false;
     
     cout << "Advancing cars on east-west yellow" << endl;
-
-    for (int i = 0; i < eastWestYellowTime; i++)
+   
+    for (int i = 0; i < eastWestYellowTime; i++) // could be a while loop
     {
       // east bound 
       if (!isYellowLightTrafficEndEastBound)
@@ -435,7 +435,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         // some cars waiting
         else if (eastQueue.getNumElems() != 0)
         {
-          if (getUniform(1, 100) <= percentCarsAdvanceOnYellow)
+          if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
           {
             isCarWaitingEastBound = eastQueue.dequeue(outCarEast);
             cout << "  Next East-bound car will advance on yellow" << endl;
@@ -443,7 +443,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                  << " advances west-bound" << endl;
             numAdvCarEastYellow++;
           }
-          else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
+          else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
           {
             cout << "  Next east-bound car will NOT advance on yellow" 
                  << endl;
@@ -464,7 +464,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         // some cars waiting
         else if (westQueue.getNumElems() != 0)
         {
-          if (getUniform(1, 100) <= percentCarsAdvanceOnYellow)
+          if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
           {
             isCarWaitingWestBound = westQueue.dequeue(outCarWest);
             cout << "  Next west-bound car will advance on yellow" << endl;
@@ -472,7 +472,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                  << " advances west-bound" << endl;
             numAdvCarWestYellow++;
           }
-          else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
+          else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
           {
             cout << "  Next west-bound car will NOT advance on yellow" 
                  << endl;
@@ -559,7 +559,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         // some cars waiting
         else if (northQueue.getNumElems() != 0)
         {
-          if (getUniform(1, 100) <= percentCarsAdvanceOnYellow)
+          if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
           {
             isCarWaitingNorthBound = northQueue.dequeue(outCarNorth);
             cout << "  Next North-bound car will advance on yellow" << endl;
@@ -567,7 +567,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                  << " advances north-bound" << endl;
             numAdvCarNorthYellow++;
           }
-          else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
+          else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
           {
             cout << "  Next north-bound car will NOT advance on yellow" 
                  << endl;
@@ -588,7 +588,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         // some cars waiting
         else if (southQueue.getNumElems() != 0)
         {
-          if (getUniform(1, 100) <= percentCarsAdvanceOnYellow)
+          if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
           {
             isCarWaitingSouthBound = southQueue.dequeue(outCarSouth);
             cout << "  Next south-bound car will advance on yellow" << endl;
@@ -596,7 +596,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                  << " advances south-bound" << endl;
             numAdvCarSouthYellow++;
           }
-          else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
+          else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
           {
             cout << "  Next south-bound car will NOT advance on yellow" 
                  << endl;
