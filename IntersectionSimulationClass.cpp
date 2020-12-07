@@ -444,6 +444,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                  << " advances west-bound" << endl;
             numAdvCarWestYellow++;
           }
+        }
         else if (getUniform(1, 100) > percentCarsAdvanceOnYellow)
         {
           cout << "  Next west-bound car will NOT advance on yellow" << endl;
@@ -453,6 +454,7 @@ bool IntersectionSimulationClass::handleNextEvent(
       numTotalAdvancedEast += numAdvCarEastYellow;
       numTotalAdvancedWest += numAdvCarWestYellow;
     }
+    scheduleLightChange();
     return (true);
   }
 
