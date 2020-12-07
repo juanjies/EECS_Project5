@@ -339,7 +339,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     cout << endl;
     return (true);
   }
-
+  // start cases for light change event
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_EW)
   {
     CarClass outCarEast;
