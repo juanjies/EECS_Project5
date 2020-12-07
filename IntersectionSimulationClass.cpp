@@ -354,9 +354,9 @@ bool IntersectionSimulationClass::handleNextEvent(
 
     for (int i = 0; i < eastWestGreenTime; i++)
     {
+      isCarWaitingEastBound = eastQueue.dequeue(outCarEast); 
       if (isCarWaitingEastBound)
       {
-        isCarWaitingEastBound = eastQueue.dequeue(outCarEast); 
         cout << "  Car #" << outCarEast.getId() 
            << " advances east-bound" << endl; 
         numAdvCarEastGreen++;
@@ -364,9 +364,9 @@ bool IntersectionSimulationClass::handleNextEvent(
     }
     for (int i = 0; i < eastWestGreenTime; i++)
     {
+      isCarWaitingWestBound = westQueue.dequeue(outCarWest);  
       if (isCarWaitingWestBound)
       {
-        isCarWaitingWestBound = westQueue.dequeue(outCarWest);
         cout << "  Car #" << outCarWest.getId()
            << " advances west-bound" << endl;
         numAdvCarWestGreen++;
