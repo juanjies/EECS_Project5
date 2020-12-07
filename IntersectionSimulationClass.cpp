@@ -279,7 +279,7 @@ bool IntersectionSimulationClass::handleNextEvent(
   isEventWaiting = eventList.removeFront(currentEvent);
   currentTime = currentEvent.getTimeOccurs();
 
-  cout << "Handling Event Type: " << currentEvent << endl;
+  cout << "Handling " << currentEvent << endl;
   cout << "Time: " << currentTime;
   
   // next event is larger than the simulation time
