@@ -238,29 +238,30 @@ void IntersectionSimulationClass::scheduleLightChange(
   if (currentTime % lightCycleTime < eastWestGreenTime)
   {
     // Integer division 
-    inLightChangeTime = currentTime / lightCycleTime + eastWestGreenTime;
+    inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
+                        + eastWestGreenTime;
     inLightChangeType = EVENT_CHANGE_YELLOW_EW;
   }
   else if (currentTime % lightCycleTime 
            < (eastWestGreenTime + eastWestYellowTime))
   {
-    inLightChangeTime = currentTime / lightCycleTime 
-                  + (eastWestGreenTime + eastWestYellowTime);
+    inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
+                        + (eastWestGreenTime + eastWestYellowTime);
     inLightChangeType = EVENT_CHANGE_GREEN_NS;
   }
   else if (currentTime % lightCycleTime 
            < (eastWestGreenTime + eastWestYellowTime + northSouthGreenTime))
   {
-    inLightChangeTime = currentTime / lightCycleTime 
-                  + (eastWestGreenTime + eastWestYellowTime 
-                  + northSouthGreenTime);
+    inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
+                        + (eastWestGreenTime + eastWestYellowTime 
+                        + northSouthGreenTime);
     inLightChangeType = EVENT_CHANGE_YELLOW_NS;
   }
   else 
   {
-    inLightChangeTime = currentTime / lightCycleTime 
-                  + (eastWestGreenTime + eastWestYellowTime 
-                  + northSouthGreenTime + northSouthYellowTime);
+    inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
+                        + (eastWestGreenTime + eastWestYellowTime 
+                        + northSouthGreenTime + northSouthYellowTime);
     inLightChangeType = EVENT_CHANGE_GREEN_EW;
   }
 
