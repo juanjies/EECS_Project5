@@ -285,11 +285,11 @@ bool IntersectionSimulationClass::handleNextEvent(
   if (currentTime > timeToStopSim)
   {
     cout << "Next event occurs AFTER the simulation end time ("
-         << currentEvent << ")!"
+         << currentEvent << ")!" << endl;
     return (false);
   }
   cout << "Handling " << currentEvent << endl;
-  else if (currentEvent.getType() == EVENT_ARRIVE_EAST) 
+  if (currentEvent.getType() == EVENT_ARRIVE_EAST) 
   {
     CarClass inCar(EAST_DIRECTION, currentTime);
     eastQueue.enqueue(inCar);
