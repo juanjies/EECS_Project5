@@ -426,7 +426,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         }
       }
       // west bound
-      if (isYellowLightTrafficEndWestBound)
+      if (!isYellowLightTrafficEndWestBound)
       {
         if (getUniform(1, 100) <= percentCarsAdvanceOnYellow)
         {
