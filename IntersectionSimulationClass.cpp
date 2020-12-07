@@ -223,7 +223,7 @@ void IntersectionSimulationClass::scheduleArrival(
   }
   
   EventClass inArrival(inArrTime, inArrType);
-  cout << "Time: " << currentTime << " Schedule Event Type: "
+  cout << "Time: " << currentTime << " Scheduled "
        << inArrival << endl;
   eventList.insertValue(inArrival);
 }
@@ -265,8 +265,9 @@ void IntersectionSimulationClass::scheduleLightChange(
   }
 
   EventClass inLightChange(inLightChangeTime, inLightChangeType);
-  cout << "Time: " << currentTime << " Schedule Event Type: "
+  cout << "Time: " << currentTime << " Scheduled "
        << inLightChange << endl;
+  cout << endl;
   eventList.insertValue(inLightChange);
 }
 
