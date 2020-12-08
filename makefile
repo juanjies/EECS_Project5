@@ -8,7 +8,7 @@ EventClass.o: EventClass.cpp EventClass.h constants.h
 
 IntersectionSimulationClass.o: IntersectionSimulationClass.cpp \
     IntersectionSimulationClass.h \
-    LinkedNodClass.inl LinkedNodClass.h \
+    LinkedNodeClass.inl LinkedNodeClass.h \
     SortedListClass.inl SortedListClass.h \
     FIFOQueueClass.inl FIFOQueueClass.h \
     EventClass.h CarClass.h constants.h
