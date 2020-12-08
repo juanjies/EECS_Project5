@@ -385,7 +385,8 @@ bool IntersectionSimulationClass::handleNextEvent(
     return (true);
   }
 
-  // start the cases for light change event
+  // start the four cases for light change event
+  // first case is when light changes from GREEN_EW to YELLOW_EW
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_EW)
   {
     CarClass outCarEast;
@@ -441,6 +442,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     return (true);
   }
 
+  // second case is when light changes from YELLOW_EW to GREEN_NS
   else if (currentEvent.getType() == EVENT_CHANGE_GREEN_NS)
   {
     CarClass outCarEast;
@@ -455,8 +457,75 @@ bool IntersectionSimulationClass::handleNextEvent(
     currentLight = LIGHT_GREEN_NS;
     cout << "Advancing cars on east-west yellow" << endl;
    
+    int i = 0;
+    while (!isYellowLightTrafficEndEastBound && i < eastWestYellowTime)
+    {
+      // No car is waiting
+      if (eastQueue.getNumElems() == 0)      
+      {
+        isYellowLightTrafficEndEastBound = true;
+        cout << "  No east-bound cars waiting to advance on yellow" 
+              << endl;
+      }
+      // some cars waiting
+      else if (eastQueue.getNumElems() != 0)
+      {
+        if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
+        {
+          isCarWaitingEastBound = eastQueue.dequeue(outCarEast);
+          cout << "  Next East-bound car will advance on yellow" << endl;
+          cout << "  Car #" << outCarEast.getId() 
+               << " advances east-bound" << endl;
+          numAdvCarEastYellow++;
+        }
+        else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
+        {
+          cout << "  Next east-bound car will NOT advance on yellow" 
+                << endl;
+          isYellowLightTrafficEndEastBound = true;
+        }
+      i++;
+    }
+
+    int j = 0;
+    while (!isYellowLightTrafficEndWestBound && j < eastWestYellowTime)
+    {
+      // No car is waiting
+      if (westQueue.getNumElems() == 0)      
+      {
+        isYellowLightTrafficEndWestBound = true;
+        cout << "  No west-bound cars waiting to advance on yellow" 
+             << endl;
+      }
+      // some cars waiting
+      else if (westQueue.getNumElems() != 0)
+      {
+        if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
+        {
+          isCarWaitingWestBound = WestQueue.dequeue(outCarWest);
+          cout << "  Next West-bound car will advance on yellow" << endl;
+          cout << "  Car #" << outCarWest.getId() 
+               << " advances west-bound" << endl;
+          numAdvCarWestYellow++;
+        }
+        else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
+        {
+          cout << "  Next west-bound car will NOT advance on yellow" 
+                << endl;
+          isYellowLightTrafficEndWestBound = true;
+        }
+      j++;
+    }
+    // update the statistical data
+    numTotalAdvancedEast += numAdvCarEastYellow;
+    numTotalAdvancedWest += numAdvCarWestYellow;
+    // when this light event is done, schedule the next light event
+    scheduleLightChange();
+    return (true);
+/*
     for (int i = 0; i < eastWestYellowTime; i++)
     {
+
       // east bound 
       if (!isYellowLightTrafficEndEastBound)
       {
@@ -486,6 +555,7 @@ bool IntersectionSimulationClass::handleNextEvent(
           }
         }
       }
+
       // west bound
       if (!isYellowLightTrafficEndWestBound)
       {
@@ -521,7 +591,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     scheduleLightChange();
     return (true);
   }
-
+*/
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_NS)
   {
     CarClass outCarNorth;
