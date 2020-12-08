@@ -2,7 +2,7 @@
 #define _LinkedNodeClass_H_
 
 // Programmer: Juan-Jie Sun
-// Date: November 2020
+// Date: December 2020
 // Purpose: This class will be used to store individual nodes of 
 //          a doubly-linked data structure. The content of a node is 
 //          set as templated so the content can be any data type 
@@ -26,10 +26,11 @@ class LinkedNodeClass {
     // newly created node's previous pointer, value, and next pointer,
     // and assigns them.
     LinkedNodeClass(
-      LinkedNodeClass< T >* inPrev, 
+      LinkedNodeClass< T >* inPrev,
       //Address of node that comes before this one
-      const T &inVal, // Value to be contained in this node
-      LinkedNodeClass< T >* inNext 
+      const T &inVal, 
+      // Value to be contained in this node
+      LinkedNodeClass< T >* inNext
       //Address of node that comes after this one
     );
     //Returns the value stored within this node.
@@ -55,10 +56,10 @@ class LinkedNodeClass {
     void setBeforeAndAfterPointers();
     //overload the operators that I will use for LinkedNodeClass
     //in implementing SortedListClass
-    bool operator>=(const LinkedNodeClass< T > &rhs)  {
+    bool operator>=(const LinkedNodeClass< T > &rhs) const {
       return (nodeVal >= rhs.getValue());
     }
-    bool operator<(const LinkedNodeClass< T > &rhs)  {
+    bool operator<(const LinkedNodeClass< T > &rhs) const {
       return (nodeVal < rhs.getValue());
     }
 };

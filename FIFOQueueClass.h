@@ -4,8 +4,9 @@
 #include "LinkedNodeClass.h"
 
 // Programmer: Juan-Jie Sun
-// Date: November 2020
-// Purpose: to implement the "first-in-first-out" queue data structure
+// Date: December 2020
+// Purpose: to implement a templated
+// "first-in-first-out" queue data structure
 
 template < class T >
 class FIFOQueueClass {

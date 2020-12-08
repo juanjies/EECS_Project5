@@ -225,6 +225,7 @@ void IntersectionSimulationClass::scheduleArrival(
   EventClass inArrival(inArrTime, inArrType);
   cout << "Time: " << currentTime << " Scheduled "
        << inArrival << endl;
+  // add the new schedule event to the SortedLinkedList
   eventList.insertValue(inArrival);
 }
 
@@ -235,30 +236,33 @@ void IntersectionSimulationClass::scheduleLightChange(
   int inLightChangeType = EVENT_UNKNOWN;
   int lightCycleTime = eastWestGreenTime + eastWestYellowTime
                        + northSouthGreenTime + northSouthYellowTime;
-  if (currentTime % lightCycleTime < eastWestGreenTime)
+  // the lightCycleTime is used later to mod the currentTime to know 
+  // the time to calculate the scheduled time for the next light event
+  if (currentLight == LIGHT_GREEN_EW)
   {
-    // Integer division 
+    // Integer division for "currentTime / lightCycleTime"
     inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
                         + eastWestGreenTime;
     inLightChangeType = EVENT_CHANGE_YELLOW_EW;
   }
-  else if (currentTime % lightCycleTime 
-           < (eastWestGreenTime + eastWestYellowTime))
+  else if (currentLight == LIGHT_YELLOW_EW)
   {
+    // Integer division for "currentTime / lightCycleTime"
     inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
                         + (eastWestGreenTime + eastWestYellowTime);
     inLightChangeType = EVENT_CHANGE_GREEN_NS;
   }
-  else if (currentTime % lightCycleTime 
-           < (eastWestGreenTime + eastWestYellowTime + northSouthGreenTime))
+  else if (currentLight == LIGHT_GREEN_NS)
   {
+    // Integer division for "currentTime / lightCycleTime"
     inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
                         + (eastWestGreenTime + eastWestYellowTime 
                         + northSouthGreenTime);
     inLightChangeType = EVENT_CHANGE_YELLOW_NS;
   }
-  else 
+  else if (currentLight == LIGHT_YELLOW_NS)
   {
+    // Integer division for "currentTime / lightCycleTime"
     inLightChangeTime = currentTime / lightCycleTime * lightCycleTime
                         + (eastWestGreenTime + eastWestYellowTime 
                         + northSouthGreenTime + northSouthYellowTime);
@@ -269,6 +273,7 @@ void IntersectionSimulationClass::scheduleLightChange(
   cout << "Time: " << currentTime << " Scheduled "
        << inLightChange << endl;
   cout << endl;
+  // add the next scheduled light event to the SortedLinkedList
   eventList.insertValue(inLightChange);
 }
 
@@ -420,7 +425,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     
     cout << "Advancing cars on east-west yellow" << endl;
    
-    for (int i = 0; i < eastWestYellowTime; i++) // could be a while loop
+    for (int i = 0; i < eastWestYellowTime; i++)
     {
       // east bound 
       if (!isYellowLightTrafficEndEastBound)

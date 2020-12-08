@@ -3,7 +3,7 @@
 
 using namespace std;
 // Programmer: Juan-Jie Sun
-// Date: November 2020
+// Date: December 2020
 // Purpose: This class will be used to store individual nodes of 
 //          a doubly-linked data structure. The content of a node is 
 //          set as templated so the content can be any data type
