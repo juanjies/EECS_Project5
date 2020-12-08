@@ -10,7 +10,7 @@
 #include "FIFOQueueClass.h"
 #include "CarClass.h"
 
-//Programmer: Andrew Morgan
+//Programmer: Andrew Morgan, Juan-Jie Sun
 //Date: November 2020
 //Purpose: A class that will act as the basis for an event-driven
 //         simulation involving traffic flow through an intersection
@@ -70,8 +70,9 @@ class IntersectionSimulationClass
     //The current time for the simulation
     int currentLight; 
     //The state of the traffic light at the current sim time
-    SortedListClass< EventClass > eventList; //The time-sorted list of events
-                                             //currently scheduled to occur
+    SortedListClass< EventClass > eventList; 
+    //The time-sorted list of events
+    //currently scheduled to occur
     FIFOQueueClass< CarClass > eastQueue; //Queue of cars waiting to advance
                                           //through intersection east-bound
     FIFOQueueClass< CarClass > westQueue; //West-bound queue of cars
@@ -87,6 +88,7 @@ class IntersectionSimulationClass
     int numTotalAdvancedWest;
     int numTotalAdvancedNorth;
     int numTotalAdvancedSouth;
+
   public:
     //Explicit default ctor - sets the state of the sim to be NOT yet
     //setup properly.
@@ -125,7 +127,8 @@ class IntersectionSimulationClass
     //setup" state, indicating the simualtion can be run in its current
     //state.
     void readParametersFromFile(
-         const std::string &paramFname //Name of text file to read params from
+         const std::string &paramFname 
+         //Name of text file to read params from
          );
 
     //Print the simulation control parameters to the console

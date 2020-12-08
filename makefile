@@ -8,6 +8,7 @@ EventClass.o: EventClass.cpp EventClass.h constants.h
 
 IntersectionSimulationClass.o: IntersectionSimulationClass.cpp \
     IntersectionSimulationClass.h \
+    LinkedNodClass.inl LinkedNodClass.h \
     SortedListClass.inl SortedListClass.h \
     FIFOQueueClass.inl FIFOQueueClass.h \
     EventClass.h CarClass.h constants.h
@@ -20,7 +21,7 @@ project5.o: project5.cpp IntersectionSimulationClass.h constants.h
 	g++ -c project5.cpp -o project5.o
 
 proj5.exe: CarClass.o EventClass.o IntersectionSimulationClass.o \
-    random.o project5.o
+           random.o project5.o
 	g++ CarClass.o EventClass.o IntersectionSimulationClass.o \
       random.o project5.o -o proj5.exe
 

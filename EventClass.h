@@ -68,7 +68,7 @@ class EventClass
     }
     bool operator<(const EventClass &rhs) const
     {
-      return (timeOccurs < rhs.getTimeOccurs() );
+      return (timeOccurs < rhs.getTimeOccurs());
     }
     //Since this insertion operator really ought to be a method, but 
     //can't be due to the way C++ manages operator overloading, we

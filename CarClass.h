@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-
 #include "constants.h"
 
 //Programmer: Andrew Morgan

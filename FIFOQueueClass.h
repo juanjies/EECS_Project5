@@ -6,7 +6,7 @@
 // Programmer: Juan-Jie Sun
 // Date: December 2020
 // Purpose: to implement a templated
-// "first-in-first-out" queue data structure
+//          "first-in-first-out" queue data structure
 
 template < class T >
 class FIFOQueueClass {

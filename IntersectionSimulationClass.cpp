@@ -8,11 +8,17 @@ using namespace std;
 #include "constants.h"
 #include "CarClass.h"
 
+//Programmer: Andrew Morgan, Juan-Jie Sun
+//Date: November 2020
+//Purpose: A class that will act as the basis for an event-driven
+//         simulation involving traffic flow through an intersection
+//         that is managed via a traffic light.
+
 void IntersectionSimulationClass::readParametersFromFile(
      const string &paramFname
      )
 {
-  bool success = true;;
+  bool success = true;
   ifstream paramF;
 
   paramF.open(paramFname.c_str());
@@ -81,7 +87,8 @@ void IntersectionSimulationClass::readParametersFromFile(
           eastArrivalStdDev < 0)
       {
         success = false;
-        cout << "ERROR: Unable to read/set east arrival distribution" << endl;
+        cout << "ERROR: Unable to read/set east arrival distribution" 
+             << endl;
       }
     }
 
@@ -93,7 +100,8 @@ void IntersectionSimulationClass::readParametersFromFile(
           westArrivalStdDev < 0)
       {
         success = false;
-        cout << "ERROR: Unable to read/set west arrival distribution" << endl;
+        cout << "ERROR: Unable to read/set west arrival distribution" 
+             << endl;
       }
     }
 
@@ -105,7 +113,8 @@ void IntersectionSimulationClass::readParametersFromFile(
           northArrivalStdDev < 0)
       {
         success = false;
-        cout << "ERROR: Unable to read/set north arrival distribution" << endl;
+        cout << "ERROR: Unable to read/set north arrival distribution" 
+             << endl;
       }
     }
 
@@ -117,7 +126,8 @@ void IntersectionSimulationClass::readParametersFromFile(
           southArrivalStdDev < 0)
       {
         success = false;
-        cout << "ERROR: Unable to read/set south arrival distribution" << endl;
+        cout << "ERROR: Unable to read/set south arrival distribution" 
+             << endl;
       }
     }
 
@@ -129,7 +139,8 @@ void IntersectionSimulationClass::readParametersFromFile(
           percentCarsAdvanceOnYellow > 100)
       {
         success = false;
-        cout << "ERROR: Unable to read/set percentage yellow advance" << endl;
+        cout << "ERROR: Unable to read/set percentage yellow advance" 
+             << endl;
       }
 
       //Use the specified seed to seed the random number generator
@@ -142,13 +153,14 @@ void IntersectionSimulationClass::readParametersFromFile(
   //Let the caller know whether things went well or not by printing the
   if (!success)
   {
-    cout << "ERROR: Parameter file was NOT read in successfully, so the " <<
-            "simulation is NOT setup properly!" << endl;
+    cout << "ERROR: Parameter file was NOT read in successfully, so the " 
+         << "simulation is NOT setup properly!" << endl;
     isSetupProperly = false;
   }
   else
   {
-    cout << "Parameters read in successfully - simulation is ready!" << endl;
+    cout << "Parameters read in successfully - simulation is ready!" 
+         << endl;
     isSetupProperly = true;
   }
 }
@@ -185,8 +197,8 @@ void IntersectionSimulationClass::printParameters() const
     cout << "    South - Mean: " << southArrivalMean << 
             " StdDev: " << southArrivalStdDev << endl;
 
-    cout << "  Percentage cars advancing through yellow: " <<
-            percentCarsAdvanceOnYellow << endl;
+    cout << "  Percentage cars advancing through yellow: "
+         << percentCarsAdvanceOnYellow << endl;
   }
   cout << "===== End Simulation Parameters =====" << endl;
 }
@@ -201,25 +213,25 @@ void IntersectionSimulationClass::scheduleArrival(
   if (travelDir == EAST_DIRECTION)
   {
     inArrTime = currentTime 
-                  + getPositiveNormal(eastArrivalMean, eastArrivalStdDev);
+                + getPositiveNormal(eastArrivalMean, eastArrivalStdDev);
     inArrType = EVENT_ARRIVE_EAST;
   }
   else if (travelDir == WEST_DIRECTION)
   {
     inArrTime = currentTime 
-                  + getPositiveNormal(westArrivalMean, westArrivalStdDev);
+                + getPositiveNormal(westArrivalMean, westArrivalStdDev);
     inArrType = EVENT_ARRIVE_WEST;
   }
   else if (travelDir == NORTH_DIRECTION)
   {
     inArrTime = currentTime 
-                  + getPositiveNormal(northArrivalMean, northArrivalStdDev);
+                + getPositiveNormal(northArrivalMean, northArrivalStdDev);
     inArrType = EVENT_ARRIVE_NORTH;
   }
   else if (travelDir == SOUTH_DIRECTION)
   {
     inArrTime = currentTime 
-                  + getPositiveNormal(southArrivalMean, southArrivalStdDev);
+                + getPositiveNormal(southArrivalMean, southArrivalStdDev);
     inArrType = EVENT_ARRIVE_SOUTH;
   }
   
@@ -298,6 +310,9 @@ bool IntersectionSimulationClass::handleNextEvent(
   }
 
   cout << "Handling " << currentEvent << endl;
+
+  // the four cases for cars' arrival in four directions
+  // the first case is the arrival for east-bound 
   if (currentEvent.getType() == EVENT_ARRIVE_EAST) 
   {
     CarClass inCar(EAST_DIRECTION, currentTime);
@@ -319,6 +334,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     }
     return (true);
   }
+  // the second case is the arrival for west-bound 
   else if (currentEvent.getType() == EVENT_ARRIVE_WEST)
   {
     CarClass inCar(WEST_DIRECTION, currentTime);
@@ -340,6 +356,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     }
     return (true);
   }
+   // the third case is the arrival for north-bound 
   else if (currentEvent.getType() == EVENT_ARRIVE_NORTH)
   {
     CarClass inCar(NORTH_DIRECTION, currentTime);
@@ -362,6 +379,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     }
     return (true);
   }
+  // the fourth case is the arrival for south-bound 
   else if (currentEvent.getType() == EVENT_ARRIVE_SOUTH)
   {
     CarClass inCar(SOUTH_DIRECTION, currentTime);
@@ -481,7 +499,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
         {
           cout << "  Next east-bound car will NOT advance on yellow" 
-                << endl;
+               << endl;
           isYellowLightTrafficEndEastBound = true;
         }
       }
@@ -512,7 +530,7 @@ bool IntersectionSimulationClass::handleNextEvent(
         else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
         {
           cout << "  Next west-bound car will NOT advance on yellow" 
-                << endl;
+               << endl;
           isYellowLightTrafficEndWestBound = true;
         }
       }
@@ -560,8 +578,7 @@ bool IntersectionSimulationClass::handleNextEvent(
       if (isCarWaitingSouthBound)
       {
         cout << "  Car #" << outCarSouth.getId()
-           << " advances south-bound" << endl;
-
+             << " advances south-bound" << endl;
         numAdvCarSouthGreen++;
       }
       j++;
@@ -612,13 +629,13 @@ bool IntersectionSimulationClass::handleNextEvent(
           isCarWaitingNorthBound = northQueue.dequeue(outCarNorth);
           cout << "  Next North-bound car will advance on yellow" << endl;
           cout << "  Car #" << outCarNorth.getId() 
-                << " advances north-bound" << endl;
+               << " advances north-bound" << endl;
           numAdvCarNorthYellow++;
         }
         else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
         {
           cout << "  Next north-bound car will NOT advance on yellow" 
-                << endl;
+               << endl;
           isYellowLightTrafficEndNorthBound = true;
         }
       }
@@ -633,7 +650,7 @@ bool IntersectionSimulationClass::handleNextEvent(
       {
         isYellowLightTrafficEndNorthBound = true;
         cout << "  No north-bound cars waiting to advance on yellow" 
-              << endl;
+             << endl;
       }
       // some cars waiting
       else if (northQueue.getNumElems() != 0)
@@ -643,13 +660,13 @@ bool IntersectionSimulationClass::handleNextEvent(
           isCarWaitingNorthBound = northQueue.dequeue(outCarNorth);
           cout << "  Next North-bound car will advance on yellow" << endl;
           cout << "  Car #" << outCarNorth.getId() 
-                << " advances north-bound" << endl;
+               << " advances north-bound" << endl;
           numAdvCarNorthYellow++;
         }
         else if (getUniform(0, 100) > percentCarsAdvanceOnYellow)
         {
           cout << "  Next north-bound car will NOT advance on yellow" 
-                << endl;
+               << endl;
           isYellowLightTrafficEndNorthBound = true;
         }
       }
