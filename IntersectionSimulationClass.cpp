@@ -285,7 +285,7 @@ bool IntersectionSimulationClass::handleNextEvent(
 
   isEventWaiting = eventList.removeFront(currentEvent);
   currentTime = currentEvent.getTimeOccurs();
-    
+  
   // next event is larger than the simulation time
   if (currentTime > timeToStopSim)
   {
@@ -377,6 +377,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingEastBound = true;
     bool isCarWaitingWestBound = true; 
  
+    currentLight = LIGHT_YELLOW_EW;
     cout << "Advancing cars on east-west green" << endl;
 
     for (int i = 0; i < eastWestGreenTime; i++)
@@ -407,7 +408,7 @@ bool IntersectionSimulationClass::handleNextEvent(
          << " Remaining queue: " << eastQueue.getNumElems() << endl;
     cout << "West-bound cars advanced on green; " << numAdvCarWestGreen
          << " Remaining queue: " << westQueue.getNumElems() << endl;
-
+    
     scheduleLightChange();
     return (true);
   }
@@ -423,6 +424,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingWestBound = true;   
     bool isYellowLightTrafficEndWestBound = false;
     
+    currentLight = LIGHT_GREEN_NS;
     cout << "Advancing cars on east-west yellow" << endl;
    
     for (int i = 0; i < eastWestYellowTime; i++)
@@ -502,6 +504,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingNorthBound = true;
     bool isCarWaitingSouthBound = true; 
  
+    currentLight = LIGHT_YELLOW_NS;
     cout << "Advancing cars on north-south green" << endl;
 
     for (int i = 0; i < northSouthGreenTime; i++)
@@ -547,6 +550,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     bool isCarWaitingSouthBound = true;   
     bool isYellowLightTrafficEndSouthBound = false;
     
+    currentLight = LIGHT_GREEN_EW;
     cout << "Advancing cars on north-south yellow" << endl;
 
     for (int i = 0; i < northSouthYellowTime; i++)
