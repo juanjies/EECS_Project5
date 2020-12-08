@@ -595,7 +595,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     cout << "Advancing cars on north-south yellow" << endl;
 
     int i = 0;
-    while (isYellowLightTrafficEndNorthBound && i < northSouthYelloTime)
+    while (isYellowLightTrafficEndNorthBound && i < northSouthYellowTime)
     {
       // No car is waiting
       if (northQueue.getNumElems() == 0)
