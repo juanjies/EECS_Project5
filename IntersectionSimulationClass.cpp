@@ -399,18 +399,6 @@ bool IntersectionSimulationClass::handleNextEvent(
     currentLight = LIGHT_YELLOW_EW;
     cout << "Advancing cars on east-west green" << endl;
     
-    /*
-    for (int i = 0; i < eastWestGreenTime; i++)
-    {
-      isCarWaitingEastBound = eastQueue.dequeue(outCarEast); 
-      if (isCarWaitingEastBound)
-      {
-        cout << "  Car #" << outCarEast.getId() 
-           << " advances east-bound" << endl; 
-        numAdvCarEastGreen++;
-      }
-    }
-    */
     int i = 0;
     while (isCarWaitingEastBound && i < eastWestGreenTime)
     {
@@ -422,25 +410,26 @@ bool IntersectionSimulationClass::handleNextEvent(
       i++;
     }
 
-    for (int i = 0; i < eastWestGreenTime; i++)
+    int j = 0;
+    while (isCarWaitingWestBound && j < eastWestGreenTime)
     {
-      isCarWaitingWestBound = westQueue.dequeue(outCarWest);  
-      if (isCarWaitingWestBound)
-      {
-        cout << "  Car #" << outCarWest.getId()
+      isCarWaitingWestBound = westQueue.dequeue(outCarWest); 
+      cout << "  Car #" << outCarWest.getId()
            << " advances west-bound" << endl;
-        numAdvCarWestGreen++;
-      }
-    }
-    
-    numTotalAdvancedEast += numAdvCarEastGreen;
-    numTotalAdvancedWest += numAdvCarWestGreen;
 
+      numAdvCarWestGreen++;
+      j++;
+    }
+    // print out the number of advanced car in this light change event
     cout << "East-bound cars advanced on green: " << numAdvCarEastGreen
          << " Remaining queue: " << eastQueue.getNumElems() << endl;
     cout << "West-bound cars advanced on green; " << numAdvCarWestGreen
          << " Remaining queue: " << westQueue.getNumElems() << endl;
-    
+
+    // update the statistical data
+    numTotalAdvancedEast += numAdvCarEastGreen;
+    numTotalAdvancedWest += numAdvCarWestGreen;
+    // after this light change event is done, schedule the next one
     scheduleLightChange();
     return (true);
   }
