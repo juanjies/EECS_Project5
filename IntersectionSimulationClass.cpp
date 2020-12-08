@@ -403,10 +403,13 @@ bool IntersectionSimulationClass::handleNextEvent(
     while (isCarWaitingEastBound && i < eastWestGreenTime)
     {
       isCarWaitingEastBound = eastQueue.dequeue(outCarEast);
-      cout << "  Car #" << outCarEast.getId() 
+      if (isCarWaitingEastBound)
+      { 
+        cout << "  Car #" << outCarEast.getId() 
            << " advances east-bound" << endl; 
 
-      numAdvCarEastGreen++;
+        numAdvCarEastGreen++;
+      }
       i++;
     }
 
@@ -414,12 +417,16 @@ bool IntersectionSimulationClass::handleNextEvent(
     while (isCarWaitingWestBound && j < eastWestGreenTime)
     {
       isCarWaitingWestBound = westQueue.dequeue(outCarWest); 
-      cout << "  Car #" << outCarWest.getId()
+      if (isCarWaitingWestBound)
+      {
+        cout << "  Car #" << outCarWest.getId()
            << " advances west-bound" << endl;
 
-      numAdvCarWestGreen++;
+        numAdvCarWestGreen++;
+      }
       j++;
     }
+
     // print out the number of advanced car in this light change event
     cout << "East-bound cars advanced on green: " << numAdvCarEastGreen
          << " Remaining queue: " << eastQueue.getNumElems() << endl;
