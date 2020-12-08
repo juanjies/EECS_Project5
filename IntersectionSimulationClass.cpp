@@ -6,6 +6,7 @@ using namespace std;
 #include "IntersectionSimulationClass.h"
 #include "random.h"
 #include "constants.h"
+#include "CarClass.h"
 
 void IntersectionSimulationClass::readParametersFromFile(
      const string &paramFname
@@ -283,16 +284,19 @@ bool IntersectionSimulationClass::handleNextEvent(
   EventClass currentEvent;
   bool isEventWaiting = true;
 
+  // remove the first event in the Sorted List when we handle it
   isEventWaiting = eventList.removeFront(currentEvent);
+  // advance the time to when that event is scheduled to happen
   currentTime = currentEvent.getTimeOccurs();
-  
-  // next event is larger than the simulation time
+  // if next event is larger than the simulation time 
+  // the simulation is done
   if (currentTime > timeToStopSim)
   {
     cout << "Next event occurs AFTER the simulation end time ("
          << currentEvent << ")!" << endl;
     return (false);
   }
+
   cout << "Handling " << currentEvent << endl;
   if (currentEvent.getType() == EVENT_ARRIVE_EAST) 
   {
@@ -303,9 +307,12 @@ bool IntersectionSimulationClass::handleNextEvent(
     cout << " Car #" << inCar.getId()
          << " arrives east-bound - queue length: " 
          << eastQueue.getNumElems() << endl;
+    // when an east-bound car arrives,
+    // schedule when the next east-bound car will arrive 
     scheduleArrival(EAST_DIRECTION);
     cout << endl;
 
+    // update the statistical data 
     if (eastQueue.getNumElems() > maxEastQueueLength)
     {
       maxEastQueueLength = eastQueue.getNumElems();
@@ -321,9 +328,12 @@ bool IntersectionSimulationClass::handleNextEvent(
     cout << " Car #" << inCar.getId()
          << " arrives west-bound - queue length: " 
          << westQueue.getNumElems() << endl;
+    // when an west-bound car arrives,
+    // schedule when the next west-bound car will arrive 
     scheduleArrival(WEST_DIRECTION);
     cout << endl;
 
+    // update the statistical data
     if (westQueue.getNumElems() > maxWestQueueLength)
     {
       maxWestQueueLength = westQueue.getNumElems();
@@ -339,9 +349,13 @@ bool IntersectionSimulationClass::handleNextEvent(
     cout << " Car #" << inCar.getId()
          << " arrives north-bound - queue length: " 
          << northQueue.getNumElems() << endl;
+
+    // when an north-bound car arrives,
+    // schedule when the next north-bound car will arrive 
     scheduleArrival(NORTH_DIRECTION);
     cout << endl;
 
+    // update the statictical data
     if (northQueue.getNumElems() > maxNorthQueueLength)
     {
       maxNorthQueueLength = northQueue.getNumElems();
@@ -357,16 +371,21 @@ bool IntersectionSimulationClass::handleNextEvent(
     cout << " Car #" << inCar.getId()
          << " arrives south-bound - queue length: " 
          << southQueue.getNumElems() << endl;
+
+    // when an south-bound car arrives,
+    // schedule when the next south-bound car will arrive 
     scheduleArrival(SOUTH_DIRECTION);
     cout << endl;
 
+    // update the statistical data
     if (southQueue.getNumElems() > maxSouthQueueLength)
     {
       maxSouthQueueLength = southQueue.getNumElems();
     }
     return (true);
   }
-  // start cases for light change event
+
+  // start the cases for light change event
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_EW)
   {
     CarClass outCarEast;
@@ -379,7 +398,8 @@ bool IntersectionSimulationClass::handleNextEvent(
  
     currentLight = LIGHT_YELLOW_EW;
     cout << "Advancing cars on east-west green" << endl;
-
+    
+    /*
     for (int i = 0; i < eastWestGreenTime; i++)
     {
       isCarWaitingEastBound = eastQueue.dequeue(outCarEast); 
@@ -390,6 +410,15 @@ bool IntersectionSimulationClass::handleNextEvent(
         numAdvCarEastGreen++;
       }
     }
+    */
+    while (isCarWaitingEastBound && i < eastWestGreenTime)
+    {
+      isCarWaitingEastBound = eastQueue.dequeue(outCarEast);
+      cout << "  Car #" << outCarEast.getId() 
+           << " advances east-bound" << endl; 
+      numAdvCarEastGreen++;
+    }
+
     for (int i = 0; i < eastWestGreenTime; i++)
     {
       isCarWaitingWestBound = westQueue.dequeue(outCarWest);  
