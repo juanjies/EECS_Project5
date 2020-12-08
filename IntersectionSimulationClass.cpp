@@ -484,6 +484,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                 << endl;
           isYellowLightTrafficEndEastBound = true;
         }
+      }
       i++;
     }
 
@@ -514,6 +515,7 @@ bool IntersectionSimulationClass::handleNextEvent(
                 << endl;
           isYellowLightTrafficEndWestBound = true;
         }
+      }
       j++;
     }
     // update the statistical data
