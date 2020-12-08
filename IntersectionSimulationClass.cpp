@@ -411,12 +411,15 @@ bool IntersectionSimulationClass::handleNextEvent(
       }
     }
     */
+    int i = 0;
     while (isCarWaitingEastBound && i < eastWestGreenTime)
     {
       isCarWaitingEastBound = eastQueue.dequeue(outCarEast);
       cout << "  Car #" << outCarEast.getId() 
            << " advances east-bound" << endl; 
+
       numAdvCarEastGreen++;
+      i++;
     }
 
     for (int i = 0; i < eastWestGreenTime; i++)
