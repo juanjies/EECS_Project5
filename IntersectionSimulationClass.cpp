@@ -386,7 +386,7 @@ bool IntersectionSimulationClass::handleNextEvent(
   }
 
   // start the four cases for light change event
-  // first case is when light changes from GREEN_EW to YELLOW_EW
+  // the first case is when light changes from GREEN_EW to YELLOW_EW
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_EW)
   {
     CarClass outCarEast;
@@ -407,7 +407,7 @@ bool IntersectionSimulationClass::handleNextEvent(
       if (isCarWaitingEastBound)
       { 
         cout << "  Car #" << outCarEast.getId() 
-           << " advances east-bound" << endl; 
+             << " advances east-bound" << endl; 
 
         numAdvCarEastGreen++;
       }
@@ -442,7 +442,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     return (true);
   }
 
-  // second case is when light changes from YELLOW_EW to GREEN_NS
+  // the second case is when light changes from YELLOW_EW to GREEN_NS
   else if (currentEvent.getType() == EVENT_CHANGE_GREEN_NS)
   {
     CarClass outCarEast;
@@ -525,7 +525,8 @@ bool IntersectionSimulationClass::handleNextEvent(
     scheduleLightChange();
     return (true);
   }
-
+  
+  // the third case is when light changes from GREEN_NS to YELLOW_NS
   else if (currentEvent.getType() == EVENT_CHANGE_YELLOW_NS)
   {
     CarClass outCarNorth;
@@ -539,38 +540,46 @@ bool IntersectionSimulationClass::handleNextEvent(
     currentLight = LIGHT_YELLOW_NS;
     cout << "Advancing cars on north-south green" << endl;
 
-    for (int i = 0; i < northSouthGreenTime; i++)
+    int i = 0;
+    while (isCarWaitingNorthBound && i < northSouthGreenTime)
     {
-      isCarWaitingNorthBound = northQueue.dequeue(outCarNorth); 
+      isCarWaitingNorthBound = northQueue.dequeue(outCarNorth);
       if (isCarWaitingNorthBound)
       {
         cout << "  Car #" << outCarNorth.getId() 
-           << " advances north-bound" << endl; 
+             << " advances north-bound" << endl; 
         numAdvCarNorthGreen++;
       }
+      i++;
     }
-    for (int i = 0; i < northSouthGreenTime; i++)
+
+    int j = 0;
+    while (isCarWaitingSouthBound && j < northSouthGreenTime)
     {
       isCarWaitingSouthBound = southQueue.dequeue(outCarSouth);  
       if (isCarWaitingSouthBound)
       {
         cout << "  Car #" << outCarSouth.getId()
            << " advances south-bound" << endl;
+
         numAdvCarSouthGreen++;
       }
-    }
-    numTotalAdvancedNorth += numAdvCarNorthGreen;
-    numTotalAdvancedSouth += numAdvCarSouthGreen;
-
+      j++;
+    }  
+    // print out the number of advanced car in this light change event
     cout << "North-bound cars advanced on green: " << numAdvCarNorthGreen
          << " Remaining queue: " << northQueue.getNumElems() << endl;
     cout << "South-bound cars advanced on green; " << numAdvCarSouthGreen
          << " Remaining queue: " << southQueue.getNumElems() << endl;
-
+    // update the statistical data
+    numTotalAdvancedNorth += numAdvCarNorthGreen;
+    numTotalAdvancedSouth += numAdvCarSouthGreen;
+    // after this light change enevt is done, schedule the next one
     scheduleLightChange();
     return (true);
   }
 
+  // the fourth case is when light changes from YELLOW_NS to GREEN_EW
   else if (currentEvent.getType() == EVENT_CHANGE_GREEN_EW)
   {
     CarClass outCarNorth;
