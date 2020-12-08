@@ -502,7 +502,7 @@ bool IntersectionSimulationClass::handleNextEvent(
       {
         if (getUniform(0, 100) <= percentCarsAdvanceOnYellow)
         {
-          isCarWaitingWestBound = WestQueue.dequeue(outCarWest);
+          isCarWaitingWestBound = westQueue.dequeue(outCarWest);
           cout << "  Next West-bound car will advance on yellow" << endl;
           cout << "  Car #" << outCarWest.getId() 
                << " advances west-bound" << endl;
@@ -522,6 +522,7 @@ bool IntersectionSimulationClass::handleNextEvent(
     // when this light event is done, schedule the next light event
     scheduleLightChange();
     return (true);
+  }
 /*
     for (int i = 0; i < eastWestYellowTime; i++)
     {
